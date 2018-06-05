@@ -9,39 +9,29 @@ package model;
  *
  * @author Math
  */
-public abstract class PecasPrototype {
+public abstract class PecasPrototype implements Prototype{
     
-    String nome;
+    String tipoPeca;
     String descricao;
     String marca;
     String modelo;
-    double peso;
-    double preco;
-    int numeroSerie;
-    String garantia;
-    String recurso;
 
     public PecasPrototype() {
     }
 
-    public PecasPrototype(String nome, String descricao, String marca, String modelo, double peso, double preco, int numeroSerie, String garantia, String recurso) {
-        this.nome = nome;
+    public PecasPrototype(String tipoPeca, String descricao, String marca, String modelo) {
+        this.tipoPeca = tipoPeca;
         this.descricao = descricao;
         this.marca = marca;
         this.modelo = modelo;
-        this.peso = peso;
-        this.preco = preco;
-        this.numeroSerie = numeroSerie;
-        this.garantia = garantia;
-        this.recurso = recurso;
-    }
-    
-    public String getNome() {
-        return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public String getTipoPeca() {
+        return tipoPeca;
+    }
+
+    public void setTipoPeca(String tipoPeca) {
+        this.tipoPeca = tipoPeca;
     }
 
     public String getDescricao() {
@@ -67,46 +57,7 @@ public abstract class PecasPrototype {
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
-
-    public double getPeso() {
-        return peso;
-    }
-
-    public void setPeso(double peso) {
-        this.peso = peso;
-    }
-
-    public double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
-
-    public int getNumeroSerie() {
-        return numeroSerie;
-    }
-
-    public void setNumeroSerie(int numeroSerie) {
-        this.numeroSerie = numeroSerie;
-    }
-
-    public String getGarantia() {
-        return garantia;
-    }
-
-    public void setGarantia(String garantia) {
-        this.garantia = garantia;
-    }
-
-    public String getRecurso() {
-        return recurso;
-    }
-
-    public void setRecurso(String recurso) {
-        this.recurso = recurso;
-    }
+  
     
     public abstract PecasPrototype clone();
     
