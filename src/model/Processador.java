@@ -12,13 +12,11 @@ package model;
 public class Processador extends PecasPrototype{
 
     public Processador(Processador novo) {
-         this.tipoPeca = "processador";
-        this.descricao = this.getDescricao();
-        this.marca = this.getMarca();
-        this.modelo = this.getModelo();
+         super(novo);
     }
 
     public Processador() {
+        this.tipoPeca = "processador";
     }
     
     @Override

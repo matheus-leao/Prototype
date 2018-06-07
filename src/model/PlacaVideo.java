@@ -10,14 +10,13 @@ package model;
  * @author Luiz myguel
  */
 public class PlacaVideo extends PecasPrototype{
-    public PlacaVideo(PlacaVideo novo) {
-        this.tipoPeca = "placa de video";
-        this.descricao = this.getDescricao();
-        this.marca = this.getMarca();
-        this.modelo = this.getModelo();
-    }
 
     public PlacaVideo() {
+        this.tipoPeca = "placa de video";
+    }
+    
+    public PlacaVideo(PlacaVideo novo){
+        super(novo);
     }
     
     @Override

@@ -13,13 +13,11 @@ public class MemoriaRam extends PecasPrototype{
     
     
     public MemoriaRam(MemoriaRam novo) {
-         this.tipoPeca = "memoria ram";
-        this.descricao = this.getDescricao();
-        this.marca = this.getMarca();
-        this.modelo = this.getModelo();
+          super(novo);
     }
 
     public MemoriaRam() {
+       this.tipoPeca = "memoria ram";
     }
     
     @Override

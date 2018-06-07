@@ -26,43 +26,6 @@ public class ClonableTeste {
         ArrayList<PecasPrototype> carrinho = new ArrayList<PecasPrototype>();
         Scanner scanner = new Scanner(System.in);
         int opcao;
-        
-        Processador processadorBase = new Processador();        
-        Processador processadorIntel = processadorBase.clone();
-        processadorIntel.setDescricao("Processador intel core i7");
-        processadorIntel.setMarca("Intel");
-        processadorIntel.setModelo("core i7");
-        
-        Processador processadorAMD = processadorBase.clone();
-        processadorAMD.setDescricao("Processador amd fx 8320");
-        processadorAMD.setMarca("AMD");
-        processadorAMD.setModelo("fx 8320");
-        
-        
-        MemoriaRam memoriaBase = new MemoriaRam();
-        MemoriaRam memoria4gb = memoriaBase.clone();
-        memoria4gb.setDescricao("Kingston 4gb");
-        memoria4gb.setMarca("Kingston");
-        memoria4gb.setModelo("4gb");
-        
-        MemoriaRam memoria8gb = memoriaBase.clone();
-        memoria8gb.setDescricao("Kingston 8gb");
-        memoria8gb.setMarca("Kingston");
-        memoria8gb.setModelo("8gb");
-        
-        
-        
-        PlacaVideo placaVideoBase = new PlacaVideo();
-        PlacaVideo placaNvidia = placaVideoBase.clone();
-        placaNvidia.setDescricao("Nvidia Titan X");
-        placaNvidia.setMarca("Nvidia");
-        placaNvidia.setModelo("Titan X");
-        
-        PlacaVideo placaRadeon = placaVideoBase.clone();
-        placaRadeon.setDescricao("Radeon rx 580");
-        placaRadeon.setMarca("Radeon");
-        placaRadeon.setModelo("rx 580");
-  
         do{
         System.out.println("********************************************************************************");
         System.out.println("Escolha o tipo de peça q deseja comprar?");
@@ -80,64 +43,104 @@ public class ClonableTeste {
         
         switch(opcao){
             case 1 :         
-                System.out.println("Qual marca de processador voce deseja?");
-                PecasPrototype processadorEscolhido = escolherPeca("o processador", processadorIntel, processadorAMD);
-                if (processadorEscolhido != null) {
-                    carrinho.add(processadorEscolhido);
-                }
-                break;
-                
+                escolherProcessador(carrinho);                
+                break;               
             case 2 : 
-                System.out.println("Qual modelo de memoria voce deseja?");
-                PecasPrototype memoriaEscolhida = escolherPeca("a memoria", memoria4gb, memoria8gb);
-                if (memoriaEscolhida != null) {
-                    carrinho.add(memoriaEscolhida);
-                }
-                break;
-                
-                
+                escolherMemoria(carrinho);                
+                break;            
             case 3 : 
-                System.out.println("Qual modelo de placa de video voce deseja?");
-                PecasPrototype placaEscolhida = escolherPeca("a placa de video", placaNvidia, placaRadeon);
-                if (placaEscolhida != null) {
-                    carrinho.add(placaEscolhida);
-                }
+                escolherPlaca(carrinho);                
                 break;
-                
+            case 4 : break;
             default: System.out.println("Opcao invalida!!!!!");
                      break;
         }
         
         }while(opcao != 4);
         
-        
+        System.out.println("Pecas compradas");
         for (int i = 0; i < carrinho.size(); i++) {
-            System.out.println("Pecas compradas");
             System.out.println(carrinho.get(i).getDescricao());
         }
         
-    }
-   
-    
-    public static PecasPrototype escolherPeca(String opcao, PecasPrototype opcao1, PecasPrototype opcao2){
+    } 
+       
+    public static void escolherProcessador(ArrayList<PecasPrototype> carrinho){
         Scanner scanner = new Scanner(System.in);
         int opcaoPeca;
-        System.out.println("Escolha " + opcao + " desejado");
-
-        System.out.println("1 -" + opcao1.getDescricao());
+        PecasCache.criarCachePecas();
         
-        System.out.println("2 - " + opcao2.getDescricao());
+        Processador processadorEscolhido = (Processador) PecasCache.buscarPecaEmCache("processador");
+        System.out.println("Escolha o modelo desejado");
+
+        System.out.println("1 - intel core i7");
+        
+        System.out.println("2 - intel core i5");
         opcaoPeca = scanner.nextInt();
         switch(opcaoPeca){
-        case 1 : return opcao1;
-        case 2 : return opcao2;
+        case 1 : processadorEscolhido.setModelo("core i7");
+                 carrinho.add(processadorEscolhido.clone());
+                 break;
+                  
+        case 2 : processadorEscolhido.setModelo("core i5");
+                 carrinho.add(processadorEscolhido.clone());
+                 break;
         
         default: System.out.println("Opcao invalida!!!!!");
-                  return null;
+                  break;
+        }   
+    }
+    
+    public static void escolherPlaca(ArrayList<PecasPrototype> carrinho){
+        Scanner scanner = new Scanner(System.in);
+        int opcaoPeca;
+        PecasCache.criarCachePecas();
+        
+        PlacaVideo placaEscolhido = (PlacaVideo) PecasCache.buscarPecaEmCache("processador");
+        System.out.println("Escolha o modelo desejado");
+
+        System.out.println("1 - nvidia Titan X");
+        
+        System.out.println("2 - nvidia Titan XXX");
+        opcaoPeca = scanner.nextInt();
+        switch(opcaoPeca){
+        case 1 : placaEscolhido.setModelo("Titan X");
+                 carrinho.add(placaEscolhido.clone());
+                 break;
+                  
+        case 2 : placaEscolhido.setModelo("Titan XXX");
+                 carrinho.add(placaEscolhido.clone());
+                 break;
+        
+        default: System.out.println("Opcao invalida!!!!!");
+                  break;
+        }   
+    }
+    
+    public static void escolherMemoria(ArrayList<PecasPrototype> carrinho){
+        Scanner scanner = new Scanner(System.in);
+        int opcaoPeca;
+        PecasCache.criarCachePecas();
+        
+        MemoriaRam memoriaEscolhida = (MemoriaRam) PecasCache.buscarPecaEmCache("memoria ram");
+        System.out.println("Escolha o modelo desejado");
+
+        System.out.println("1 - kingston 4gb");
+        
+        System.out.println("2 - kingston 8gb");
+        opcaoPeca = scanner.nextInt();
+        switch(opcaoPeca){
+        case 1 : memoriaEscolhida.setModelo("4gb");
+                 carrinho.add(memoriaEscolhida.clone());
+                 break;
+                  
+        case 2 : memoriaEscolhida.setModelo("8gb");
+                 carrinho.add(memoriaEscolhida.clone());
+                 break;
+        
+        default: System.out.println("Opcao invalida!!!!!");
+                  break;
         }   
     }
     
 }
-
-
-    

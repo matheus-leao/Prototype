@@ -12,18 +12,22 @@ package model;
 public abstract class PecasPrototype implements Prototype{
     
     String tipoPeca;
-    String descricao;
     String marca;
     String modelo;
+    
+    public PecasPrototype(){}
 
-    public PecasPrototype() {
-    }
-
-    public PecasPrototype(String tipoPeca, String descricao, String marca, String modelo) {
+    public PecasPrototype(String tipoPeca, String marca, String modelo) {
         this.tipoPeca = tipoPeca;
-        this.descricao = descricao;
         this.marca = marca;
         this.modelo = modelo;
+    }
+    
+    
+    PecasPrototype(PecasPrototype novo){
+        this.tipoPeca = novo.getTipoPeca();
+        this.marca = novo.getMarca();
+        this.modelo = novo.getModelo();
     }
 
     public String getTipoPeca() {
@@ -35,11 +39,7 @@ public abstract class PecasPrototype implements Prototype{
     }
 
     public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        return this.tipoPeca + " " + this.marca + " " + this.modelo;
     }
 
     public String getMarca() {
